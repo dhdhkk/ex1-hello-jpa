@@ -43,7 +43,7 @@ public class JpaMain {
                     .getResultList();
 
             for (Member member1 : member) {
-                System.out.println("member1 = " + member1.getName());
+                System.out.println("member1 = " + member1.getUsername());
 
             }
             tx.commit();
@@ -59,3 +59,6 @@ public class JpaMain {
 
     }
 }
+
+
+// JPA에서 가장 중요한 2가지
