@@ -22,6 +22,7 @@ public class JpaMain {
 
         //code
         try {
+            System.out.println("japboo");
             tx.commit();
         } catch (Exception e) {
             tx.rollback();

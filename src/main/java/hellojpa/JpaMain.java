@@ -37,15 +37,26 @@ public class JpaMain {
             // - SQL과 문법 유사, SELECT, FROM, WHERE, GROUP BY, HAVING, JOIN 지원
             // - SQL은 데이터베이스 테이블을 대상으로 쿼리
             // - JPQL은 객체 지향 SQL이다!!
-            List<Member> member = em.createQuery("select m from Member as m", Member.class)
-                    .setFirstResult(1)
-                    .setMaxResults(10)
-                    .getResultList();
+//            List<Member> member = em.createQuery("select m from Member as m", Member.class)
+//                    .setFirstResult(1)
+//                    .setMaxResults(10)
+//                    .getResultList();
+//
+//            for (Member member1 : member) {
+//                System.out.println("member1 = " + member1.getUsername());
 
-            for (Member member1 : member) {
-                System.out.println("member1 = " + member1.getUsername());
+            //팀 저장
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
 
-            }
+            //회원 저장
+            Member member = new Member();
+            member.setName("member1");
+            member.setTeam(team); //단방향 연관관계 설정, 참조 저장
+
+            em.persist(member);
+
             tx.commit();
         }
         catch (Exception e) {

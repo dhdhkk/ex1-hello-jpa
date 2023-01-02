@@ -5,29 +5,22 @@ import java.util.Date;
 
 @Entity
 public class Member {
-    @Id
+
+    @Id @GeneratedValue
     private Long id;
 
-    @Column(name = "name")
-    private String username;
+    @Column(name = "USERNAME")
+    private String name;
 
-    private Integer age;
+    private int age;
 
-    @Enumerated(EnumType.STRING)
-    private RoleType roleType;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
+    //@Column(name = "TEAM_ID")
+    // private Long teamId;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifiedDate;
-
-    @Lob // 큰 컨테츠를 사용할 때
-    private String description;
-
-    public Member() {
-
-    }
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
     public Long getId() {
         return id;
@@ -37,51 +30,27 @@ public class Member {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Integer getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    public RoleType getRoleType() {
-        return roleType;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setRoleType(RoleType roleType) {
-        this.roleType = roleType;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }
