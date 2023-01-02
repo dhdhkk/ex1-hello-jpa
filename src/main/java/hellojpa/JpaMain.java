@@ -57,6 +57,16 @@ public class JpaMain {
 
             em.persist(member);
 
+            em.flush();
+            em.clear(); // ID를 DB에서 받아야 하기 때문에 꼭 필요!
+
+            Member findMember = em.find(Member.class, member.getId());
+            List<Member> members = findMember.getTeam().getMembers();
+
+            for (Member m : members) {
+                System.out.println("m = " + m.getName());
+            }
+
             tx.commit();
         }
         catch (Exception e) {

@@ -2,6 +2,8 @@ package hellojpa;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Team {
@@ -9,6 +11,10 @@ public class Team {
     private Long id;
 
     private String name;
+
+
+    @OneToMany(mappedBy = "team") // 주인이 아니면 mappedBy로 지정, 주인은 외래키가 있는 곳
+    private List<Member> members = new ArrayList<>();
 
 
     public Long getId() {
@@ -25,5 +31,13 @@ public class Team {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Member> members) {
+        this.members = members;
     }
 }
